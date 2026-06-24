@@ -1,17 +1,18 @@
 import 'package:education_app/core/res/colours.dart';
 import 'package:education_app/core/res/fonts.dart';
+import 'package:education_app/core/services/injection_container.dart';
 import 'package:education_app/core/services/router.dart';
-import 'package:education_app/src/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await init();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,12 +22,11 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: Fonts.poppins,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent
+          color: Colors.transparent,
         ),
-        colorScheme: ColorScheme.fromSwatch(accentColor: Colours.primaryColour)
+        colorScheme: ColorScheme.fromSwatch(accentColor: Colours.primaryColour),
       ),
-      onGenerateRoute: generateRoute
+      onGenerateRoute: generateRoute,
     );
   }
-
 }
