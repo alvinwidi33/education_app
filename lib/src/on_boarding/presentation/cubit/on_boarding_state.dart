@@ -1,36 +1,42 @@
-import 'package:bloc/bloc.dart';
-import 'package:education_app/src/on_boarding/domain/usecases/cache_first_timer.dart';
-import 'package:education_app/src/on_boarding/domain/usecases/check_if_user_is_first_timer.dart';
-import 'package:education_app/src/on_boarding/presentation/cubit/on_boarding_cubit.dart';
+import 'package:equatable/equatable.dart';
 
-class OnBoardingCubit extends Cubit<OnBoardingState> {
-  OnBoardingCubit({
-    required CacheFirstTimer cacheFirstTimer,
-    required CheckIfUserIsFirstTimer checkIfUserIsFirstTimer,
-  })  : _cacheFirstTimer = cacheFirstTimer,
-        _checkIfUserIsFirstTimer = checkIfUserIsFirstTimer,
-        super(const OnBoardingInitial());
+abstract class OnBoardingState extends Equatable {
+  const OnBoardingState();
 
-  final CacheFirstTimer _cacheFirstTimer;
-  final CheckIfUserIsFirstTimer _checkIfUserIsFirstTimer;
+  @override
+  List<Object> get props => [];
+}
 
-  Future<void> cacheFirstTimer() async {
-    emit(const CachingFirstTimer());
-    final result = await _cacheFirstTimer();
+class OnBoardingInitial extends OnBoardingState {
+  const OnBoardingInitial();
+}
 
-    result.fold(
-      (failure) => emit(OnBoardingError(failure.errorMessage)),
-      (_) => emit(const UserCached()),
-    );
-  }
+class CachingFirstTimer extends OnBoardingState {
+  const CachingFirstTimer();
+}
 
-  Future<void> checkIfUserIsFirstTimer() async {
-    emit(const CheckingIfUserIsFirstTimer());
-    final result = await _checkIfUserIsFirstTimer();
+class CheckingIfUserIsFirstTimer extends OnBoardingState {
+  const CheckingIfUserIsFirstTimer();
+}
 
-    result.fold(
-      (failure) => emit(const OnBoardingStatus(isFirstTimer: true)),
-      (status) => emit(OnBoardingStatus(isFirstTimer: status)),
-    );
-  }
+class UserCached extends OnBoardingState {
+  const UserCached();
+}
+
+class OnBoardingStatus extends OnBoardingState {
+  const OnBoardingStatus({required this.isFirstTimer});
+
+  final bool isFirstTimer;
+
+  @override
+  List<bool> get props => [isFirstTimer];
+}
+
+class OnBoardingError extends OnBoardingState {
+  const OnBoardingError(this.message);
+
+  final String message;
+
+  @override
+  List<String> get props => [message];
 }
