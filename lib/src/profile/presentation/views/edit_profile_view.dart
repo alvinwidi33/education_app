@@ -12,7 +12,6 @@ import 'package:education_app/src/auth/presentation/bloc/auth_event.dart';
 import 'package:education_app/src/auth/presentation/bloc/auth_state.dart';
 import 'package:education_app/src/profile/presentation/widgets/edit_profile_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 

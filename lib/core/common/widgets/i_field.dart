@@ -35,11 +35,11 @@ class IField extends StatelessWidget {
       validator: overrideValidator
           ? validator
           : (value) {
-        if (value == null || value.isEmpty) {
-          return 'This field is required';
-        }
-        return validator?.call(value);
-      },
+              if (value == null || value.isEmpty) {
+                return 'This field is required';
+              }
+              return validator?.call(value);
+            },
       onTapOutside: (_) {
         FocusScope.of(context).unfocus();
       },
@@ -66,7 +66,8 @@ class IField extends StatelessWidget {
         fillColor: fillColour,
         suffixIcon: suffixIcon,
         hintText: hintText,
-        hintStyle: hintStyle ??
+        hintStyle:
+            hintStyle ??
             const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,

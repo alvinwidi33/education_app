@@ -21,9 +21,9 @@ class CourseRemoteDataSrcImpl implements CourseRemoteDataSrc {
     required FirebaseFirestore firestore,
     required FirebaseStorage storage,
     required FirebaseAuth auth,
-  })  : _firestore = firestore,
-        _storage = storage,
-        _auth = auth;
+  }) : _firestore = firestore,
+       _storage = storage,
+       _auth = auth;
 
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
@@ -49,9 +49,9 @@ class CourseRemoteDataSrcImpl implements CourseRemoteDataSrc {
 
       if (courseModel.imageIsFile) {
         final imageRef = _storage.ref().child(
-              'courses/${courseModel.id}/profile_image'
-              '/${courseModel.title}-pfp',
-            );
+          'courses/${courseModel.id}/profile_image'
+          '/${courseModel.title}-pfp',
+        );
 
         await imageRef.putFile(File(courseModel.image!)).then((value) async {
           final url = await value.ref.getDownloadURL();
@@ -92,7 +92,10 @@ class CourseRemoteDataSrcImpl implements CourseRemoteDataSrc {
           statusCode: '401',
         );
       }
-      return _firestore.collection('courses').get().then(
+      return _firestore
+          .collection('courses')
+          .get()
+          .then(
             (value) => value.docs
                 .map((doc) => CourseModel.fromMap(doc.data()))
                 .toList(),

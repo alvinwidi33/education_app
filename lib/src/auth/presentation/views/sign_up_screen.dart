@@ -13,7 +13,6 @@ import 'package:education_app/src/auth/presentation/widgets/sign_up_form.dart';
 import 'package:education_app/src/dashboard/presentation/views/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -46,19 +45,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (_, state) {
+        listener: (_, state) async {
           if (state is AuthError) {
             CoreUtils.showSnackBar(context, state.message);
           } else if (state is SignedUp) {
             context.read<AuthBloc>().add(
-                  SignInEvent(
-                    email: emailController.text.trim(),
-                    password: passwordController.text.trim(),
-                  ),
-                );
+              SignInEvent(
+                email: emailController.text.trim(),
+                password: passwordController.text.trim(),
+              ),
+            );
           } else if (state is SignedIn) {
             context.read<UserProvider>().initUser(state.user as LocalUserModel);
-            Navigator.pushReplacementNamed(context, Dashboard.routeName);
+            await Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }
         },
         builder: (context, state) {
@@ -87,8 +86,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(
+                        onPressed: () async {
+                          await Navigator.pushReplacementNamed(
                             context,
                             SignInScreen.routeName,
                           );
@@ -110,17 +109,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     else
                       RoundedButton(
                         label: 'Sign Up',
-                        onPressed: () {
+                        onPressed: () async {
                           FocusManager.instance.primaryFocus?.unfocus();
-                          FirebaseAuth.instance.currentUser?.reload();
+                          await FirebaseAuth.instance.currentUser?.reload();
                           if (formKey.currentState!.validate()) {
                             context.read<AuthBloc>().add(
-                                  SignUpEvent(
-                                    email: emailController.text.trim(),
-                                    password: passwordController.text.trim(),
-                                    name: fullNameController.text.trim(),
-                                  ),
-                                );
+                              SignUpEvent(
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim(),
+                                name: fullNameController.text.trim(),
+                              ),
+                            );
                           }
                         },
                       ),

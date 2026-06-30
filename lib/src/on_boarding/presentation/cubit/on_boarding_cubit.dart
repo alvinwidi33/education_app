@@ -7,9 +7,9 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
   OnBoardingCubit({
     required CacheFirstTimer cacheFirstTimer,
     required CheckIfUserIsFirstTimer checkIfUserIsFirstTimer,
-  })  : _cacheFirstTimer = cacheFirstTimer,
-        _checkIfUserIsFirstTimer = checkIfUserIsFirstTimer,
-        super(const OnBoardingInitial());
+  }) : _cacheFirstTimer = cacheFirstTimer,
+       _checkIfUserIsFirstTimer = checkIfUserIsFirstTimer,
+       super(const OnBoardingInitial());
 
   final CacheFirstTimer _cacheFirstTimer;
   final CheckIfUserIsFirstTimer _checkIfUserIsFirstTimer;

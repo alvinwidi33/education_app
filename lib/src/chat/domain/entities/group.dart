@@ -13,16 +13,16 @@ class Group extends Equatable {
   });
 
   const Group.empty()
-      : this(
-          id: '',
-          name: '',
-          courseId: '',
-          members: const [],
-          lastMessage: null,
-          groupImageUrl: null,
-          lastMessageTimestamp: null,
-          lastMessageSenderName: null,
-        );
+    : this(
+        id: '',
+        name: '',
+        courseId: '',
+        members: const [],
+        lastMessage: null,
+        groupImageUrl: null,
+        lastMessageTimestamp: null,
+        lastMessageSenderName: null,
+      );
 
   final String id;
   final String name;

@@ -16,27 +16,27 @@ class LocalUserModel extends LocalUser {
   });
 
   const LocalUserModel.empty()
-      : this(
-          uid: '',
-          email: '',
-          points: 0,
-          fullName: '',
-        );
+    : this(
+        uid: '',
+        email: '',
+        points: 0,
+        fullName: '',
+      );
 
   LocalUserModel.fromMap(DataMap map)
-      : super(
-          uid: map['uid'] as String,
-          email: map['email'] as String,
-          points: (map['points'] as num).toInt(),
-          fullName: map['fullName'] as String,
-          profilePic: map['profilePic'] as String?,
-          bio: map['bio'] as String?,
-          groupIds: (map['groupIds'] as List<dynamic>).cast<String>(),
-          enrolledCourseIds:
-              (map['enrolledCourseIds'] as List<dynamic>).cast<String>(),
-          following: (map['following'] as List<dynamic>).cast<String>(),
-          followers: (map['followers'] as List<dynamic>).cast<String>(),
-        );
+    : super(
+        uid: map['uid'] as String,
+        email: map['email'] as String,
+        points: (map['points'] as num).toInt(),
+        fullName: map['fullName'] as String,
+        profilePic: map['profilePic'] as String?,
+        bio: map['bio'] as String?,
+        groupIds: (map['groupIds'] as List<dynamic>).cast<String>(),
+        enrolledCourseIds: (map['enrolledCourseIds'] as List<dynamic>)
+            .cast<String>(),
+        following: (map['following'] as List<dynamic>).cast<String>(),
+        followers: (map['followers'] as List<dynamic>).cast<String>(),
+      );
 
   LocalUserModel copyWith({
     String? uid,

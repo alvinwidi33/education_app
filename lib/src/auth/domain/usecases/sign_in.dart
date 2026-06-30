@@ -11,9 +11,9 @@ class SignIn extends UsecaseWithParams<LocalUser, SignInParams> {
 
   @override
   ResultFuture<LocalUser> call(SignInParams params) => _repo.signIn(
-        email: params.email,
-        password: params.password,
-      );
+    email: params.email,
+    password: params.password,
+  );
 }
 
 class SignInParams extends Equatable {
@@ -22,9 +22,7 @@ class SignInParams extends Equatable {
     required this.password,
   });
 
-  const SignInParams.empty()
-      : email = '',
-        password = '';
+  const SignInParams.empty() : email = '', password = '';
 
   final String email;
   final String password;

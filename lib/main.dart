@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: Fonts.poppins,
           appBarTheme: const AppBarTheme(
-            color: Colors.transparent,
+            backgroundColor: Colors.transparent,
           ),
           colorScheme: ColorScheme.fromSwatch(
             accentColor: Colours.primaryColour,

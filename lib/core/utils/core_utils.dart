@@ -1,6 +1,5 @@
 import 'package:education_app/core/res/colours.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CoreUtils {
   const CoreUtils._();

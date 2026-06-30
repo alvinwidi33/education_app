@@ -4,7 +4,6 @@ import 'package:education_app/src/profile/presentation/refactors/profile_body.da
 import 'package:education_app/src/profile/presentation/refactors/profile_header.dart';
 import 'package:education_app/src/profile/presentation/widgets/profile_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});

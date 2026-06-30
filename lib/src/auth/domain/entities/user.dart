@@ -15,18 +15,18 @@ class LocalUser extends Equatable {
   });
 
   const LocalUser.empty()
-      : this(
-          uid: '',
-          email: '',
-          points: 0,
-          fullName: '',
-          profilePic: '',
-          bio: '',
-          groupIds: const [],
-          enrolledCourseIds: const [],
-          followers: const [],
-          following: const [],
-        );
+    : this(
+        uid: '',
+        email: '',
+        points: 0,
+        fullName: '',
+        profilePic: '',
+        bio: '',
+        groupIds: const [],
+        enrolledCourseIds: const [],
+        followers: const [],
+        following: const [],
+      );
 
   final String uid;
   final String email;
@@ -41,17 +41,17 @@ class LocalUser extends Equatable {
 
   @override
   List<Object?> get props => [
-        uid,
-        email,
-        profilePic,
-        bio,
-        points,
-        fullName,
-        groupIds.length,
-        enrolledCourseIds.length,
-        following.length,
-        followers.length,
-      ];
+    uid,
+    email,
+    profilePic,
+    bio,
+    points,
+    fullName,
+    groupIds.length,
+    enrolledCourseIds.length,
+    following.length,
+    followers.length,
+  ];
 
   @override
   String toString() {

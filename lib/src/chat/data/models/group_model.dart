@@ -15,34 +15,34 @@ class GroupModel extends Group {
   });
 
   GroupModel.empty()
-      : this(
-          id: '',
-          name: '',
-          members: const [],
-          lastMessage: '',
-          courseId: '',
-          groupImageUrl: '',
-          lastMessageSenderName: '',
-          lastMessageTimestamp: DateTime.now(),
-        );
+    : this(
+        id: '',
+        name: '',
+        members: const [],
+        lastMessage: '',
+        courseId: '',
+        groupImageUrl: '',
+        lastMessageSenderName: '',
+        lastMessageTimestamp: DateTime.now(),
+      );
 
   GroupModel.fromMap(Map<String, dynamic> map)
-      : this(
-          id: map['id'] as String,
-          name: map['name'] as String,
-          courseId: map['courseId'] as String,
-          members: List<String>.from(map['members'] as List<dynamic>),
-          // OR
-          // members: (map['members'] as List<dynamic>).cast<String>(),
-          // OR
-          // members: (map['members'] as List<dynamic>).map((e) => e as String)
-          // .toList(),
-          lastMessage: map['lastMessage'] as String?,
-          lastMessageSenderName: map['lastMessageSenderName'] as String?,
-          lastMessageTimestamp:
-              (map['lastMessageTimestamp'] as Timestamp?)?.toDate(),
-          groupImageUrl: map['groupImageUrl'] as String?,
-        );
+    : this(
+        id: map['id'] as String,
+        name: map['name'] as String,
+        courseId: map['courseId'] as String,
+        members: List<String>.from(map['members'] as List<dynamic>),
+        // OR
+        // members: (map['members'] as List<dynamic>).cast<String>(),
+        // OR
+        // members: (map['members'] as List<dynamic>).map((e) => e as String)
+        // .toList(),
+        lastMessage: map['lastMessage'] as String?,
+        lastMessageSenderName: map['lastMessageSenderName'] as String?,
+        lastMessageTimestamp: (map['lastMessageTimestamp'] as Timestamp?)
+            ?.toDate(),
+        groupImageUrl: map['groupImageUrl'] as String?,
+      );
 
   GroupModel copyWith({
     String? id,
@@ -75,8 +75,9 @@ class GroupModel extends Group {
       'members': members,
       'lastMessage': lastMessage,
       'lastMessageSenderName': lastMessageSenderName,
-      'lastMessageTimestamp':
-          lastMessage == null ? null : FieldValue.serverTimestamp(),
+      'lastMessageTimestamp': lastMessage == null
+          ? null
+          : FieldValue.serverTimestamp(),
       'groupImageUrl': groupImageUrl,
     };
   }

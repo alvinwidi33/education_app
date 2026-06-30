@@ -18,31 +18,31 @@ class CourseModel extends Course {
   });
 
   CourseModel.empty()
-      : this(
-          id: '_empty.id',
-          title: '_empty.title',
-          description: '_empty.description',
-          numberOfExams: 0,
-          numberOfMaterials: 0,
-          numberOfVideos: 0,
-          groupId: '_empty.groupId',
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
-        );
+    : this(
+        id: '_empty.id',
+        title: '_empty.title',
+        description: '_empty.description',
+        numberOfExams: 0,
+        numberOfMaterials: 0,
+        numberOfVideos: 0,
+        groupId: '_empty.groupId',
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+      );
 
   CourseModel.fromMap(DataMap map)
-      : super(
-          id: map['id'] as String,
-          title: map['title'] as String,
-          description: map['description'] as String?,
-          groupId: map['groupId'] as String,
-          numberOfExams: (map['numberOfExams'] as num).toInt(),
-          numberOfMaterials: (map['numberOfMaterials'] as num).toInt(),
-          numberOfVideos: (map['numberOfVideos'] as num).toInt(),
-          image: map['image'] as String?,
-          createdAt: (map['createdAt'] as Timestamp).toDate(),
-          updatedAt: (map['updatedAt'] as Timestamp).toDate(),
-        );
+    : super(
+        id: map['id'] as String,
+        title: map['title'] as String,
+        description: map['description'] as String?,
+        groupId: map['groupId'] as String,
+        numberOfExams: (map['numberOfExams'] as num).toInt(),
+        numberOfMaterials: (map['numberOfMaterials'] as num).toInt(),
+        numberOfVideos: (map['numberOfVideos'] as num).toInt(),
+        image: map['image'] as String?,
+        createdAt: (map['createdAt'] as Timestamp).toDate(),
+        updatedAt: (map['updatedAt'] as Timestamp).toDate(),
+      );
 
   CourseModel copyWith({
     String? id,
@@ -73,15 +73,15 @@ class CourseModel extends Course {
   }
 
   DataMap toMap() => {
-        'id': id,
-        'title': title,
-        'description': description,
-        'groupId': groupId,
-        'image': image,
-        'createdAt': FieldValue.serverTimestamp(),
-        'updatedAt': FieldValue.serverTimestamp(),
-        'numberOfVideos': numberOfVideos,
-        'numberOfExams': numberOfExams,
-        'numberOfMaterials': numberOfMaterials,
-      };
+    'id': id,
+    'title': title,
+    'description': description,
+    'groupId': groupId,
+    'image': image,
+    'createdAt': FieldValue.serverTimestamp(),
+    'updatedAt': FieldValue.serverTimestamp(),
+    'numberOfVideos': numberOfVideos,
+    'numberOfExams': numberOfExams,
+    'numberOfMaterials': numberOfMaterials,
+  };
 }

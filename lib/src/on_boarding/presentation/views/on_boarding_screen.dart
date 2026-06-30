@@ -23,9 +23,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final pageController = PageController();
 
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
-    context.read<OnBoardingCubit>().checkIfUserIsFirstTimer();
+    await context.read<OnBoardingCubit>().checkIfUserIsFirstTimer();
   }
 
   @override
@@ -35,11 +35,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       body: GradientBackground(
         image: MediaRes.onBoardingBackground,
         child: BlocConsumer<OnBoardingCubit, OnBoardingState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state is OnBoardingStatus && !state.isFirstTimer) {
-              Navigator.pushReplacementNamed(context, '/home');
+              await Navigator.pushReplacementNamed(context, '/home');
             } else if (state is UserCached) {
-              Navigator.pushReplacementNamed(context, '/');
+              await Navigator.pushReplacementNamed(context, '/');
             }
           },
           builder: (context, state) {
@@ -62,8 +62,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: SmoothPageIndicator(
                     controller: pageController,
                     count: 3,
-                    onDotClicked: (index) {
-                      pageController.animateToPage(
+                    onDotClicked: (index) async {
+                      await pageController.animateToPage(
                         index,
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.easeInOut,

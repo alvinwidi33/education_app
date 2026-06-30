@@ -10,10 +10,10 @@ class SignUp extends UsecaseWithParams<void, SignUpParams> {
 
   @override
   ResultFuture<void> call(SignUpParams params) => _repo.signUp(
-        email: params.email,
-        password: params.password,
-        fullName: params.fullName,
-      );
+    email: params.email,
+    password: params.password,
+    fullName: params.fullName,
+  );
 }
 
 class SignUpParams extends Equatable {

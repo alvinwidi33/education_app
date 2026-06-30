@@ -8,7 +8,6 @@ import 'package:education_app/src/auth/presentation/bloc/auth_bloc.dart';
 import 'package:education_app/src/profile/presentation/views/edit_profile_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 

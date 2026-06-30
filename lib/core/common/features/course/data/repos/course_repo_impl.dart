@@ -16,7 +16,7 @@ class CourseRepoImpl implements CourseRepo {
     try {
       await _remoteDataSrc.addCourse(course);
       return const Right(null);
-    } on ServerException catch(e) {
+    } on ServerException catch (e) {
       return Left(ServerFailure.fromException(e));
     }
   }

@@ -12,11 +12,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required SignUp signUp,
     required ForgotPassword forgotPassword,
     required UpdateUser updateUser,
-  })  : _signIn = signIn,
-        _signUp = signUp,
-        _forgotPassword = forgotPassword,
-        _updateUser = updateUser,
-        super(const AuthInitial()) {
+  }) : _signIn = signIn,
+       _signUp = signUp,
+       _forgotPassword = forgotPassword,
+       _updateUser = updateUser,
+       super(const AuthInitial()) {
     on<AuthEvent>((event, emit) {
       emit(const AuthLoading());
     });

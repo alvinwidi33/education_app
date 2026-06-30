@@ -1,6 +1,5 @@
 import 'package:education_app/core/extensions/content_extenstion.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class NestedBackButton extends StatelessWidget {
   const NestedBackButton({super.key});

@@ -13,7 +13,6 @@ class PersistentView extends StatefulWidget {
 
 class _PersistentViewState extends State<PersistentView>
     with AutomaticKeepAliveClientMixin {
-
   @override
   Widget build(BuildContext context) {
     super.build(context);

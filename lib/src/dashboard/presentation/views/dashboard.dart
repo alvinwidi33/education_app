@@ -5,8 +5,6 @@ import 'package:education_app/src/dashboard/presentation/providers/dashboard_con
 import 'package:education_app/src/dashboard/presentation/utils/dashboard_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
@@ -21,9 +19,9 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
-    SystemChrome.setPreferredOrientations([
+    await SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
@@ -38,7 +36,7 @@ class _DashboardState extends State<Dashboard> {
           context.read<UserProvider>().user = snapshot.data;
         }
         return Consumer<DashboardController>(
-          builder: (_, controller, __) {
+          builder: (_, controller, _) {
             return Scaffold(
               body: IndexedStack(
                 index: controller.currentIndex,

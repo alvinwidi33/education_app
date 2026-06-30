@@ -38,9 +38,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required FirebaseAuth authClient,
     required FirebaseFirestore cloudStoreClient,
     required FirebaseStorage dbClient,
-  })  : _authClient = authClient,
-        _cloudStoreClient = cloudStoreClient,
-        _dbClient = dbClient;
+  }) : _authClient = authClient,
+       _cloudStoreClient = cloudStoreClient,
+       _dbClient = dbClient;
 
   final FirebaseAuth _authClient;
   final FirebaseFirestore _cloudStoreClient;
@@ -147,15 +147,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     try {
       switch (action) {
         case UpdateUserAction.email:
-          await _authClient.currentUser?.verifyBeforeUpdateEmail(userData as String);
+          await _authClient.currentUser?.verifyBeforeUpdateEmail(
+            userData as String,
+          );
           await _updateUserData({'email': userData});
         case UpdateUserAction.displayName:
           await _authClient.currentUser?.updateDisplayName(userData as String);
           await _updateUserData({'fullName': userData});
         case UpdateUserAction.profilePic:
-          final ref = _dbClient
-              .ref()
-              .child('profile_pics/${_authClient.currentUser?.uid}');
+          final ref = _dbClient.ref().child(
+            'profile_pics/${_authClient.currentUser?.uid}',
+          );
 
           await ref.putFile(userData as File);
           final url = await ref.getDownloadURL();
@@ -200,7 +202,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   Future<void> _setUserData(User user, String fallbackEmail) async {
-    await _cloudStoreClient.collection('users').doc(user.uid).set(
+    await _cloudStoreClient
+        .collection('users')
+        .doc(user.uid)
+        .set(
           LocalUserModel(
             uid: user.uid,
             email: user.email ?? fallbackEmail,

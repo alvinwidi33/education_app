@@ -29,14 +29,11 @@ class MockUser extends Mock implements User {
 
 class MockUserCredential extends Mock implements UserCredential {
   MockUserCredential([User? user]) : _user = user;
-  User? _user;
+  final User? _user;
 
   @override
   User? get user => _user;
 
-  set user(User? value) {
-    if (_user != value) _user = value;
-  }
 }
 
 class MockAuthCredential extends Mock implements AuthCredential {}

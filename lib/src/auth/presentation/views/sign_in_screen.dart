@@ -13,7 +13,6 @@ import 'package:education_app/src/auth/presentation/widgets/sign_in_form.dart';
 import 'package:education_app/src/dashboard/presentation/views/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -42,12 +41,12 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (_, state) {
+        listener: (_, state) async {
           if (state is AuthError) {
             CoreUtils.showSnackBar(context, state.message);
           } else if (state is SignedIn) {
             context.read<UserProvider>().initUser(state.user as LocalUserModel);
-            Navigator.pushReplacementNamed(context, Dashboard.routeName);
+            await Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }
         },
         builder: (context, state) {
@@ -79,8 +78,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           baseline: 100,
                           baselineType: TextBaseline.alphabetic,
                           child: TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacementNamed(
+                            onPressed: () async {
+                              await Navigator.pushReplacementNamed(
                                 context,
                                 SignUpScreen.routeName,
                               );
@@ -100,8 +99,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/forgot-password');
+                        onPressed: () async {
+                          await Navigator.pushNamed(
+                            context,
+                            '/forgot-password',
+                          );
                         },
                         child: const Text('Forgot password?'),
                       ),
@@ -112,16 +114,16 @@ class _SignInScreenState extends State<SignInScreen> {
                     else
                       RoundedButton(
                         label: 'Sign In',
-                        onPressed: () {
+                        onPressed: () async {
                           FocusManager.instance.primaryFocus?.unfocus();
-                          FirebaseAuth.instance.currentUser?.reload();
+                          await FirebaseAuth.instance.currentUser?.reload();
                           if (formKey.currentState!.validate()) {
                             context.read<AuthBloc>().add(
-                                  SignInEvent(
-                                    email: emailController.text.trim(),
-                                    password: passwordController.text.trim(),
-                                  ),
-                                );
+                              SignInEvent(
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim(),
+                              ),
+                            );
                           }
                         },
                       ),

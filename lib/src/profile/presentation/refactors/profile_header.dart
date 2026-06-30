@@ -3,7 +3,6 @@ import 'package:education_app/core/extensions/content_extenstion.dart';
 import 'package:education_app/core/res/colours.dart';
 import 'package:education_app/core/res/media_res.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -12,7 +11,7 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<UserProvider>(
-      builder: (_, provider, __) {
+      builder: (_, provider, _) {
         final user = provider.user;
         final image = user?.profilePic == null || user!.profilePic!.isEmpty
             ? null
